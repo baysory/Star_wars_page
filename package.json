@@ -20,9 +20,10 @@
   "description": "",
   "devDependencies": {
     "gulp": "^5.0.1",
+    "gulp-fluent-ffmpeg": "^2.0.0",
     "gulp-imagemin": "^9.1.0",
     "gulp-sass": "^6.0.1",
-    "gulp-uglify": "^3.0.2",
+    "gulp-terser": "^2.1.0",
     "sass": "^1.89.2"
   }
 }
