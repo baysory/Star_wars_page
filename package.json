@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "gulp",
+    "build:images": "node process-images.js",
+    "build:js": "gulp scripts",
+    "build:css": "gulp styles",
+    "build": "npm run build:css && npm run build:js && npm run build:images",
     "dev": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,9 +22,12 @@
   "homepage": "https://github.com/baysory/Star_wars_page#readme",
   "description": "",
   "devDependencies": {
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.3",
     "gulp": "^5.0.1",
     "gulp-imagemin": "^9.1.0",
     "gulp-sass": "^6.0.1",
+    "gulp-sharp-responsive": "^0.4.1",
     "gulp-terser": "^2.1.0",
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-optipng": "^8.0.0",
