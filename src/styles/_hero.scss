@@ -1,15 +1,68 @@
 @use 'variaveis';
 
 .hero {
-    padding: 5.6vw;
+    padding: 5.0vw;
     min-height: 100vh;
     background-image: url('../../dist/images/hero_neutro_desktop.png');    
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    
+    .button {
+        margin-top: 2vw;
+        margin-bottom: 20px;
+    }
+        
+        &__content {
+        max-width: 640px;
 
 
-    img {
-        max-height: 80%;
+        &__branding {
+            max-width: 90px;
+            margin: 0 auto 3px;
+            margin-right: 100%;
+        }
+        
+        .title--small {
+        margin-bottom: 64px;
+    }
+    
+    &__escolha {
+        display: flex; 
+        justify-content: space-between;
+        width: 100%;
+        gap: 20px;
+        box-sizing: border-box;
+        padding: 10px 0;
+        margin: 0;
+
+        
+        &__opção {
+            width: 70px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: blue($color: #000000);
+            gap: 15px;
+
+
+            .button {
+                background-color: blue;
+            }
+
+            }
+
+        &__opção:nth-child(2) {
+    .button {
+        background-color: green;
+    }
+        }
+
+            img {
+                max-height: 60%;
+                max-width: 180px;
+            }
+        }
     }
 }
