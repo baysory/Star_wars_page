@@ -1,0 +1,122 @@
+@use 'variaveis';
+
+
+.timeline {
+    padding: 40px;
+
+    &__title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+    }
+
+    &__component {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    &__nav {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0 10%;
+
+        @media (max-width: 768px) {
+                overflow-x: auto;
+                padding-bottom: 20px;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+                &::-webkit-scrollba {
+                    display: none;
+                }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+    }
+        &__button {
+            display: flex;
+            background-color: variaveis.$corDeFundo;
+            justify-content: center;
+            align-items: center;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid;
+            color: green;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 1;
+            position: relative;
+
+            &:hover {
+                transform: scale(1.1);
+                border-color: #3498db;
+                color: #3498db;
+            }
+
+            &--active {
+                color: red;
+                background-color: variaveis.$corDeFundo;
+                transform: scale(1.2);
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-top: 10px solid #3498db;
+                    bottom: -25px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                
+            }
+            &__img {
+                width: 100%;
+                height: 100%;
+                align-items: center;
+                object-fit: cover;
+            }
+        }
+
+        &__content {
+            position: relative;
+            
+
+            &__pane {
+                border-radius: 12px;
+                padding: 30px;
+                box-shadow: 0 10px 30px;
+                text-align: center;
+                display: none;
+                animation: fadeIn 0.6s;
+
+                &--active {
+                    display: block;
+                }
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+}   
+

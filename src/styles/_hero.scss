@@ -8,6 +8,13 @@
     background-position: center;
     background-repeat: no-repeat;
     
+
+        @media  (max-width: 768px) {
+            background-image: url(../images/hero_neutro_mobile.png);
+            padding-top: 0%;
+            background-repeat: no-repeat;
+            min-height: 80vh;
+        }
     .button {
         margin-top: 2vw;
         margin-bottom: 20px;
@@ -16,25 +23,72 @@
         &__content {
         max-width: 640px;
 
+        @media  (max-width: 768px) {
+            padding-top: 70%;
+            display: block;
+
+        }
+
 
         &__branding {
-            max-width: 90px;
+            max-width: 10vw;
             margin: 0 auto 3px;
             margin-right: 100%;
+
+            @media  (max-width: 768px) {
+                    display: flex;
+                    margin-right: 0;
+                    justify-content: center;
+                    padding-right: 50%;
+                    height: 100%;
+
+            }
+
+
+            img {
+                width: 40vw;
+                height: auto;
+
+
+                @media (max-width: 768px) {
+                    width: 80vw;
+                }
+            }
         }
         
         .title--small {
         margin-bottom: 64px;
+        font-size: 1.5vw;
+        padding-left: 30px;
+
+        @media (max-width: 768px) {
+                    font-size: 3vw;
+                }
+        
     }
+
+        .text--small {
+            font-size: 1.5vw;  
+            padding-left: 30px;
+            display: flex;
+            align-items: center;
+
+            @media (max-width: 768px) {
+                font-size: 3vw;
+                color: variaveis.$corTextoPrincipal;
+            }
+
+        }
     
     &__escolha {
         display: flex; 
         justify-content: space-between;
         width: 100%;
-        gap: 20px;
+        padding-left: 30px;
+        gap: 10px;
         box-sizing: border-box;
-        padding: 10px 0;
         margin: 0;
+
 
         
         &__opção {
@@ -43,25 +97,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: blue($color: #000000);
             gap: 15px;
 
 
-            .button {
-                background-color: blue;
+            .button {   
+                background-color: variaveis.$corButtonSith;
+                border: variaveis.$borderButtonSith;
             }
 
             }
 
         &__opção:nth-child(2) {
     .button {
-        background-color: green;
+        background-color: variaveis.$corButtonJedi;
+        border: variaveis.$bordeButtonJedi;
     }
         }
 
             img {
-                max-height: 60%;
-                max-width: 180px;
+                max-width: 60%;
+                width: 10vw;
             }
         }
     }
