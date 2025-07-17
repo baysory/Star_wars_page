@@ -106,26 +106,7 @@
 </section>
 
 
-<script>
-            document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.timeline__button')
-            const panes = document.querySelectorAll('.timeline__content__pane')
-
-            buttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const targetId = this.getAttribute('data-target')
-                    const targetPane = document.getElementById(targetId)
-
-                    // Remove a classe 'active' de todos os botões e painéis
-                    buttons.forEach(btn => btn.classList.remove('timeline__button--active'))
-                    panes.forEach(pane => pane.classList.remove('timeline__content__pane--active'));
-
-                    // Adiciona a classe 'active' ao botão clicado e ao painel alvo
-                    this.classList.add('timeline__button--active');
-                    targetPane.classList.add('timeline__content__pane--active');
-                });
-            });
-        });
+<script src="./dist/js/main.js">
 </script>
 </body>
 </html>
