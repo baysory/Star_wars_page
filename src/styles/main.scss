@@ -48,7 +48,9 @@ body {
     @include text(18px);
 
         @media (max-width: 768px) {
-            @include titulos(15px)
+            @include titulos(15px);
+            
+            color: variaveis.$corTextoPrincipal;
         }
 }
 
