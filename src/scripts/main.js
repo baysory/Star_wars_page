@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const botoesTimeline = document.querySelectorAll('.timeline__button');
     const panesTimeline = document.querySelectorAll('.timeline__content__pane');
+    const botoesCor = document.querySelectorAll('.sabre-spectrum__botao');
+    const paineisInfo = document.querySelectorAll('.sabre-spectrum__painel');
 
 
     //transforma cada letra num span para dar início à animação de "decodificação"
@@ -119,4 +121,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
         initialLoadAnimation();
     });
+
+    function handleSabreColorClick(event) {
+        const botaoClicado = event.currentTarget;
+        const targetId = botaoClicado.getAttribute('data-target');
+        if (!targetId) return;
+        const targetPane = document.getElementById(targetId);
+
+        //Remove os --actives
+        botoesCor.forEach(btn => btn.classList.remove('sabre-spectrum__botao--active'));
+        paineisInfo.forEach(pane => pane.classList.remove('sabre-spectrum__painel--active'));
+
+        //adiciona o --active
+        botaoClicado.classList.add('sabre-spectrum__botao--active');
+        if (targetPane) {
+            targetPane.classList.add('sabre-spectrum__painel--active');
+        }
+    }
+
+    botoesCor.forEach(botao => {
+        botao.addEventListener('click', handleSabreColorClick);
+    });
+
 });

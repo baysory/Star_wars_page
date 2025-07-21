@@ -1,0 +1,72 @@
+@use 'variaveis';
+
+
+.alternating-timeline {
+    max-width: 100vw;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.alternating-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+    background-color: red;
+
+    @media (max-width: 768px) {
+                flex-direction: column;
+                
+            }
+
+    &:nth-child(even){
+        flex-direction: row-reverse;
+        @media (max-width: 768px) {
+                flex-direction: column;
+                background-color: blue;
+            }
+    }
+    
+    &__image {
+        flex: 1;
+        min-width: 300px;
+        border-radius: 8px;
+        border: 2x solid variaveis.$corBorda;
+        width: 100%;
+        height: auto;
+        display: block;
+
+        @media (max-width: 768px) {
+            min-width: auto;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__type {
+        display: inline-block;
+        background-color: yellow;
+        color: #000;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        font-family: star-jedi;
+    }
+
+    &__title {
+        font-size: 1.8rem;
+        color: #fff;
+        margin-bottom: 15px;
+        font-family: trajan-pro;
+    }
+
+    &__text {
+        color: #fff;
+        line-height: 1.7;
+        font-family: trajan-pro;
+    }
+}

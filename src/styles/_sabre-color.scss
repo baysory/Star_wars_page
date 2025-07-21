@@ -1,0 +1,113 @@
+@use 'variaveis';
+
+
+:root {
+            --cor-verde: #2ecc71;
+            --cor-vermelho: #e74c3c;
+            --cor-roxo: #9b59b6;
+            --cor-azul: #3498db;
+            --cor-amarelo: #f1c40f;
+            --cor-branco: #ecf0f1;
+            --cor-preto: #bdc3c7;
+            --cor-fundo-escuro: #0a0f18;
+            --cor-texto-base: #a7c0e2;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+.sabre-spectrum {
+    padding: 40px;
+
+    &__nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 40px;
+        border: 1px solid;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    &__botao {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-color: var(--saber-color);
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &--active{
+            box-shadow: 0 0 15px var(--saber-color), 0 0 25px var(--saber-color);
+            transform: scale(1.2);
+            border-color: #fff;
+        }
+    }
+
+    &__info-container {
+        width: 100%;
+    }
+
+    &__painel {
+        display: none;
+        animation: fadeIn 0.6s;
+        background-color: variaveis.$corInterface;
+        border: 1px solid variaveis.$corBorda;
+        border-radius: 8px;
+        padding: 30px;
+
+        &--active {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            align-items: center;
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+    }
+    &__imagem {
+        width: 100%;
+        height: auto;
+        border: 2px solid var(--saber-color);
+        box-shadow: 0 0 20px var(--saber-color);
+
+        @media (max-width: 768px) {
+            max-width: 250px;
+            margin: 0 auto 20px auto;
+        }
+    }
+
+    &__titulo {
+        font-size: 2rem;
+        color: var(--saber-color);
+        margin-bottom: 15px;
+        border-bottom: 4px solid var(--saber-color);
+    }
+
+    &__texto {
+        font-size: 1.5rem;
+        line-height: 1.7;
+        text-align: justify;
+        color: variaveis.$corTextoPrincipal;
+
+        @media (max-width: 768px) {
+                font-size: 100%;
+                line-height: 1.5;
+                text-align: justify;
+                word-spacing: normal;
+            }
+    }
+}

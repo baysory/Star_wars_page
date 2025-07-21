@@ -2,6 +2,8 @@
 @use 'hero';
 @use 'timeline';
 @use 'sass:color';
+@use 'sabre-color';
+@use 'alternating-timeline';
 
 // --- FONTES ---
 @font-face {
@@ -162,3 +164,4 @@ body {
         }
     }
 }
+
