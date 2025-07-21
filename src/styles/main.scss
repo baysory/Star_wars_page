@@ -3,29 +3,40 @@
 @use 'timeline';
 @use 'sass:color';
 
+// --- FONTES ---
 @font-face {
-    font-family: aurebesh;
+    font-family: 'aurebesh';
     src: url(../../assets/aurebesh/Aurebesh.otf);
     font-weight: 400;
 }
 
 @font-face {
-    font-family: star-jedi;
+    font-family: 'star-jedi';
     src: url(../../assets/star-jedi/Starjedi.ttf);
     font-weight: 700;
 }
 
 @font-face {
-    font-family: trajan-pro;
+    font-family: 'trajan-pro';
     src: url(../../assets/trajan-pro/TrajanPro-Regular.ttf);
     font-weight: 700;
 }
 
+// --- KEYFRAMES PARA A ANIMAÇÃO DE "TROCA" ---
+@keyframes decode-letter-swap-animation {
+    100% {
+        color: variaveis.$corTextoPrincipal;
+        font-family: 'trajan-pro', sans-serif;
+        font-weight: 700;
+    }
+}
+
+// --- ESTILOS GLOBAIS ---
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: trajan-pro, sans-serif;
+    font-family: 'trajan-pro', sans-serif;
     list-style: none;
 }
 
@@ -33,10 +44,36 @@ body {
     background-color: black;
 }
 
-@mixin text($fonteSize: 16px) {
+// --- MIXINS (COM A LÓGICA CORRIGIDA) ---
+@mixin text($fonteSize: 16px, $animated: false,) {
+    // Estilos base do parágrafo
+    font-family: 'trajan-pro', sans-serif;
+    font-weight: 700;
     font-size: $fonteSize;
     line-height: $fonteSize + 10px;
     color: variaveis.$corTextoPrincipal;
+    text-align: justify;
+    hyphens: auto;
+
+
+    @if $animated == true {
+        // O estado inicial das letras é ser VISÍVEL em AUREBESH.
+        .letter {
+            display: inline-block;
+            font-family: 'aurebesh', sans-serif;
+            font-weight: 400;
+            color: variaveis.$corTextoPrincipal;
+        }
+
+        // Quando a classe .decoded é adicionada, a animação @keyframes começa.
+        &.decoded .letter {
+            animation-name: decode-letter-swap-animation;
+            animation-duration: 0.2s;
+            animation-timing-function: step-start; 
+            animation-fill-mode: forwards;
+            animation-delay: var(--delay);
+        }
+    }
 }
 
 @mixin titulos($fonteSize: 40px) {
@@ -44,56 +81,59 @@ body {
     color: variaveis.$corTitulos;
 }
 
-.text--big  {
-    @include text(18px);
+// --- CLASSES DE TEXTO ---
+.text--big {
+    @include text(22px, $animated: true, );
 
-        @media (max-width: 768px) {
-            @include titulos(15px);
-            
-            color: variaveis.$corTextoPrincipal;
-        }
+    @media (max-width: 768px) {
+        @include text(15px, $animated: true,);
+        color: variaveis.$corTextoPrincipal;
+    }
 }
 
 .text {
     @include text;
 
-        @media (max-width: 768px) {
-            @include titulos(14px)
-        }
+    @media (max-width: 768px) {
+        @include text(14px);
+    }
 }
 
 .text--small {
     @include text(12px);
 
-        @media ( max-width: 768px) {
-            @include titulos (26px);
-        }
+    @media (max-width: 768px) {
+        @include text(26px);
+    }
 }
 
+// --- CLASSES DE TÍTULO ---
 .title--big {
     @include titulos(44px);
+    text-align: center;
 
-        @media (max-width: 768px) {
-            @include titulos(26px)
-        }
+    @media (max-width: 768px) {
+        @include titulos(26px);
+    }
 }
 
-.title  {
+.title {
     @include titulos;
 
-        @media (max-width: 768px) {
-            @include titulos(24px)
-        }
+    @media (max-width: 768px) {
+        @include titulos(24px);
+    }
 }
 
 .title--small {
     @include titulos(28px);
 
-        @media (max-width: 768px) {
-            @include titulos(22px)
-        }
+    @media (max-width: 768px) {
+        @include titulos(22px);
+    }
 }
 
+// --- BOTÃO ---
 .button {
     display: block;
     justify-content: center;
@@ -107,9 +147,10 @@ body {
     padding: 8px 14px;
     letter-spacing: 1px;
     border: none;
+    font-family: 'aurebesh', sans-serif;
 
     &:hover {
-        background-color: color.adjust(variaveis.$corButtonSith, $lightness: 3%)
+        background-color: color.adjust(variaveis.$corButtonSith, $lightness: 3%);
     }
 
     &--image-full-width {
@@ -117,8 +158,7 @@ body {
         position: relative;
 
         img {
-            width: 100%
+            width: 100%;
         }
-    }    
+    }
 }
-
