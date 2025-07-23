@@ -1,0 +1,58 @@
+// Arquivo: _splash-screen.scss
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    // Classe que ativa a animação de "wipe"
+    &.wiping {
+        animation: wipe-up 2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+}
+
+#splash-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+// Animação que encolhe a altura da tela de splash para 0
+@keyframes wipe-up {
+    from {
+        height: 100%;
+    }
+    to {
+        height: 0%;
+    }
+}
+
+#main-content {
+            /* O conteúdo fica posicionado normalmente na página */
+            padding: 40px;
+            color: #333;
+            /* Começa escondido para evitar um "flash" antes da hora */
+            visibility: hidden;
+        }
+        
+        /* Classe para tornar o conteúdo visível */
+        #main-content.visible {
+            visibility: visible;
+        }
+
+        #main-content h1, #main-content p {
+            text-align: center;
+        }
+
+        /* Classe para esconder elementos completamente após a transição */
+        .hidden {
+            display: none !important;
+        }
