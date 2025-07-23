@@ -1,0 +1,255 @@
+@use 'variaveis';
+
+:root {
+            --cor-jedi: #29c2e2;
+            --cor-sith: #e74c3c;
+            --cor-mandaloriano: #758a99;
+            --cor-rebelde: #f1c40f;
+            --cor-imperio: #bdc3c7;
+            --cor-forca: #9b59b6;
+            --cor-jedi-heroes: #3498db; 
+            --cor-sith-legends: #c0392b; 
+            --cor-resistencia: #e67e22;
+            --cor-primeira-ordem: #ecf0f1;
+            --cor-cacadores: #d35400;
+            --cor-droides: #34e7e4;
+            --cor-fundo-escuro: #0a0f18;
+            --cor-fundo-interface: #111827;
+            --cor-texto-base: #a7c0e2;
+            --cor-borda: #2e3a59;
+        }
+
+        .holocron-library{
+            width: 100%;
+
+            &__pedestals {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 50px;
+                perspective: 1000px;
+
+                @media (max-width: 768px) {
+                grid-template-columns: repeat(1, 1fr);
+                }
+            }
+        }
+
+        
+
+        .holocron-pedestal {
+            text-align: center;
+            cursor: pointer;
+
+            &__label {
+            font-family: 'trajan-pro', sans-serif;
+            font-size: 1.2rem;
+            color: variaveis.$corTitulos;
+            text-shadow: 0 0 10px;
+        }
+        }
+
+        .holocron-shape {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            margin: 0 auto 20px auto;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);        
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .holocron-pedestal:hover .holocron-shape {
+            transform: rotateY(45deg) rotateX(-25deg) scale(1.1);
+        }
+
+        .holocron-face {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.9));
+            border: 1px solid;
+            box-shadow: inset 0 0 15px;
+        }
+
+        .front  { transform: rotateY(0deg) translateZ(60px); }
+        .back   { transform: rotateY(180deg) translateZ(60px); }
+        .right  { transform: rotateY(90deg) translateZ(60px); }
+        .left   { transform: rotateY(-90deg) translateZ(60px); }
+        .top    { transform: rotateX(90deg) translateZ(60px); }
+        .bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+        .holocron-pedestal--jedi { color: var(--cor-jedi); }
+        .holocron-pedestal--sith { color: var(--cor-sith); }
+        .holocron-pedestal--mandaloriano { color: var(--cor-mandaloriano); }
+        .holocron-pedestal--rebelde { color: var(--cor-rebelde); }
+        .holocron-pedestal--imperio { color: var(--cor-imperio); }
+        .holocron-pedestal--forca { color: var(--cor-forca); }
+        .holocron-pedestal--jedi-heroes { color: var(--cor-jedi-heroes); }
+        .holocron-pedestal--sith-legends { color: var(--cor-sith-legends); }
+        .holocron-pedestal--resistencia { color: var(--cor-resistencia); }
+        .holocron-pedestal--primeira-ordem { color: var(--cor-primeira-ordem); }
+        .holocron-pedestal--cacadores { color: var(--cor-cacadores); }
+        .holocron-pedestal--droides { color: var(--cor-droides); }
+
+        @keyframes float {
+            0% { transform: rotateY(0deg) rotateX(-15deg) translateY(0px); }
+            50% { transform: rotateY(20deg) rotateX(-15deg) translateY(-15px); }
+            100% { transform: rotateY(0deg) rotateX(-15deg) translateY(0px); }
+        }
+
+        .holocron-archive {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 15, 24, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+
+            &--active {
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+
+            &__content {
+                background-color: var(--cor-fundo-interface);
+                border: 1px solid var(--cor-borda);
+                border-top: 4px solid;
+                border-radius: 8px;
+                width: 90%;
+                max-width: 800px;
+                height: 80vh;
+                display: flex;
+                transform: scale(0.8);
+                transition: transform 0.5s ease;
+                position: relative;
+                transform: scale(1);
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    height: 90vh;
+                }
+            }
+
+            &__nav {
+                flex: 0 0 250px;
+                border-right: 1px solid var(--cor-borda);
+                padding: 20px;
+                overflow-y: auto;
+                
+                @media (max-width: 768px) {
+                    flex-basis: 40%;
+                    border-right: none;
+                }
+            }
+
+            &__display {
+                padding: 30px;
+                flex-grow: 1;
+                overflow-y: auto;
+                position: relative;
+                background-image: 
+                    linear-gradient(var(--cor-borda) 1px, transparent 1px),
+                    linear-gradient(to right, var(--cor-borda) 1px, transparent 1px);
+                background-size: 20px 20px;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: var(--faction-color);
+                    box-shadow: 0 0 10px var(--faction-color);
+                    animation: scanline 3s ease-in-out forwards;
+        }
+            }
+        }
+
+        .archive-nav__button {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--cor-texto-base);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
+            text-align: left;
+            padding: 12px 10px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--cor-borda);
+            position: relative;
+        }
+
+        .archive-nav__button::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background-color: var(--faction-color);
+            opacity: 0.2;
+            transition: width 0.3s ease;
+        }
+
+        .archive-nav__button:hover::before,
+        .archive-nav__button--active::before {
+            width: 100%;
+        }
+
+        .archive-nav__button--active {
+            font-weight: 700;
+            color: var(--faction-color);
+        }
+        @keyframes scanline {
+            from { top: -10px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            to { top: 100%; opacity: 0; }
+        }
+
+        .archive-display__title {
+            font-family: 'trajan-pro', sans-serif;
+            color:  variaveis.$corTitulos;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .archive-display__text {
+            line-height: 1.8;
+            font-size: 1.3em;
+            white-space: pre-wrap;
+            color: variaveis.$corTextoPrincipal
+        }
+
+        .holographic-text {
+            animation: holographic-animation 1s steps(40, end);
+        }
+
+        @keyframes holographic-animation {
+            0% { opacity: 0; text-shadow: 0 0 5px, 0 0 10px; filter: blur(1px); }
+            50% { opacity: 0.8; text-shadow: 0 0 10px, 0 0 20px; }
+            100% { opacity: 1; text-shadow: none; filter: blur(0); }
+        }
+
+        .holocron-archive__close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 4em;
+            cursor: pointer;
+            z-index: 1;
+        }

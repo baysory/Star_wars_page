@@ -7,12 +7,14 @@
     padding: 40px;
 }
 
+
 .alternating-item {
     display: flex;
     align-items: center;
     gap: 40px;
     margin-bottom: 60px;
-    background-color: red;
+    border-bottom: 10px outset #fff;
+
 
     @media (max-width: 768px) {
                 flex-direction: column;
@@ -23,7 +25,6 @@
         flex-direction: row-reverse;
         @media (max-width: 768px) {
                 flex-direction: column;
-                background-color: blue;
             }
     }
     
@@ -33,7 +34,7 @@
         border-radius: 8px;
         border: 2x solid variaveis.$corBorda;
         width: 100%;
-        height: auto;
+        height: 45vw;
         display: block;
 
         @media (max-width: 768px) {
@@ -53,13 +54,14 @@
         border-radius: 4px;
         font-weight: 700;
         margin-bottom: 15px;
-        font-size: 0.9rem;
+        font-size: 1.4rem;
         font-family: star-jedi;
     }
 
     &__title {
         font-size: 1.8rem;
-        color: #fff;
+        color: variaveis.$corTitulos;
+        border-bottom: 1px solid variaveis.$corTitulos;
         margin-bottom: 15px;
         font-family: trajan-pro;
     }
@@ -70,3 +72,5 @@
         font-family: trajan-pro;
     }
 }
+
+//https://g.co/gemini/share/e619fd5be9d6

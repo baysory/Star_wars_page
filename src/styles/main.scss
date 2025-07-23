@@ -4,8 +4,9 @@
 @use 'sass:color';
 @use 'sabre-color';
 @use 'alternating-timeline';
+@use 'holocrom';
+@use 'footer';
 
-// --- FONTES ---
 @font-face {
     font-family: 'aurebesh';
     src: url(../../assets/aurebesh/Aurebesh.otf);
@@ -24,7 +25,6 @@
     font-weight: 700;
 }
 
-// --- KEYFRAMES PARA A ANIMAÇÃO DE "TROCA" ---
 @keyframes decode-letter-swap-animation {
     100% {
         color: variaveis.$corTextoPrincipal;
@@ -33,7 +33,7 @@
     }
 }
 
-// --- ESTILOS GLOBAIS ---
+
 * {
     margin: 0;
     padding: 0;
@@ -46,20 +46,17 @@ body {
     background-color: black;
 }
 
-// --- MIXINS (COM A LÓGICA CORRIGIDA) ---
+
 @mixin text($fonteSize: 16px, $animated: false,) {
-    // Estilos base do parágrafo
     font-family: 'trajan-pro', sans-serif;
     font-weight: 700;
     font-size: $fonteSize;
     line-height: $fonteSize + 10px;
     color: variaveis.$corTextoPrincipal;
-    text-align: justify;
     hyphens: auto;
 
 
     @if $animated == true {
-        // O estado inicial das letras é ser VISÍVEL em AUREBESH.
         .letter {
             display: inline-block;
             font-family: 'aurebesh', sans-serif;
@@ -67,7 +64,6 @@ body {
             color: variaveis.$corTextoPrincipal;
         }
 
-        // Quando a classe .decoded é adicionada, a animação @keyframes começa.
         &.decoded .letter {
             animation-name: decode-letter-swap-animation;
             animation-duration: 0.2s;
@@ -83,9 +79,17 @@ body {
     color: variaveis.$corTitulos;
 }
 
-// --- CLASSES DE TEXTO ---
+.section-title {
+            padding: 80px;
+            text-align: center;
+        }
+
 .text--big {
     @include text(22px, $animated: true, );
+    text-align: justify; 
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 
     @media (max-width: 768px) {
         @include text(15px, $animated: true,);
@@ -102,14 +106,13 @@ body {
 }
 
 .text--small {
-    @include text(12px);
+    @include text(12px ,);
 
     @media (max-width: 768px) {
-        @include text(26px);
+        @include text(12px);
     }
 }
 
-// --- CLASSES DE TÍTULO ---
 .title--big {
     @include titulos(44px);
     text-align: center;
@@ -135,7 +138,6 @@ body {
     }
 }
 
-// --- BOTÃO ---
 .button {
     display: block;
     justify-content: center;
